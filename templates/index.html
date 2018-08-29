@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Demo</title>
+    </head>
+    <body>
+        <h1>Video Streaming Demonstration</h1>
+        <img src="{{ url_for('video_feed', video_id='0') }}">
+        <form action="{{ url_for('form') }}" method='post'>
+            <input name="video_id" type="hidden" value="0"></input>
+            <button>Go Go</button>
+        </form>
+
+        <br>
+        <br>
+
+        <img src="{{ url_for('video_feed', video_id='1') }}">
+        <form action="{{ url_for('form') }}" method='post'>
+            <input name="video_id" type="hidden" value="1"></input>
+            <button>Go Go</button>
+        </form>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+        $(function() {
+            $("button").click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    cache: false,
+                    url: "{{ url_for('form') }}",
+                    data: $(e.target).parent().serialize(),
+                    success: function(msg) {
+                        console.log(msg);
+                    }
+                });
+            });
+        });
+        </script>
+    </body>
+</html>
