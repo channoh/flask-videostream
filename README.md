@@ -12,5 +12,5 @@ $ gunicorn -w 3 --worker-connections 3 wsgi --timeout 12000 --preload
 ```bash
 $ virtualenv .venv
 $ source ./venv/bin/activate
-$ python3 -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
